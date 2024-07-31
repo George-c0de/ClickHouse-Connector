@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package conn;
+option go_package = "github.com/george/ClickHouse-Connector/src/gen/go/conn";
+
+service QueryService {
+  rpc ExecuteQuery (QueryRequest) returns (QueryResponse);
+}
+
+message QueryRequest {
+  string query = 1;
+}
+
+message QueryResponse {
+  repeated string results = 1;
+}
