@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ClickHouse-Connector/configuration"
 	"context"
 	"errors"
 	"fmt"
@@ -35,14 +36,17 @@ func main() {
 }
 
 func connect() (driver.Conn, error) {
+
+	cfg := configuration.Config{}
 	var (
-		ctx       = context.Background()
+		ctx = context.Background()
+
 		conn, err = clickhouse.Open(&clickhouse.Options{
-			Addr: []string{"localhost:8123"},
+			Addr: []string{cfg.AddrClick + ":" + cfg.PortClick},
 			Auth: clickhouse.Auth{
-				Database: "default",
-				Username: "default",
-				Password: "admin",
+				Database: cfg.Database,
+				Username: cfg.Username,
+				Password: cfg.Password,
 			},
 			ClientInfo: clickhouse.ClientInfo{
 				Products: []struct {

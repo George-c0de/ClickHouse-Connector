@@ -2,11 +2,10 @@ package client
 
 import (
 	"context"
+	"google.golang.org/grpc"
+
 	"log"
 	"time"
-
-	"google.golang.org/grpc"
-	pb "path/to/your/generated/code" // замените на путь к сгенерированному коду
 )
 
 func main() {
